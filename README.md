@@ -2,6 +2,7 @@
 내가 가장 자신있는 c++로 만들었는데, 아무래도 웹사이트를 만들기에는 한계가 있는듯 하다
 한글이 깨져보인다 ㅠ
 처음 짠 알고리즘은 이렇다
+
 #include <iostream>
 #include <vector>
 #include <cstdlib>  // rand(), srand()
@@ -13,6 +14,7 @@ void key();
 void cat();  
 
 int main() {
+
     cout << "1. 키워드 기반 추천" << '\n' << "2. 카테고리 기반 추천" << '\n';
     cout << "원하는 추천 서비스 번호를 입력하세요: ";
 
@@ -32,6 +34,7 @@ int main() {
 }
 
 void key() {
+
     vector<string> words = {"고수", "바지", "마법", "개구리", "페이커", "유충", "벌레", "버스"};
 
     string keyword;
@@ -49,6 +52,7 @@ void key() {
 }
 
 void cat() {
+
     vector<string> animals = {"개구리", "조랑말", "강아지", "가나디", "표범", "라이거", "하마", "살쾡이", "호랑이", "물고기", "비단잉어", "미어캣", "흑동고래", "상어"};
     vector<string> food = {"케이크", "아메리카노", "자몽허니블랙티", "장어초밥", "튀김우동", "로제떡볶이", "탕화쿵푸마라탕", "신전떡볶이", "엽떡", "쉑쉑버거", "버거킹", "칼국수"};
     vector<string> family = {"엄마", "아빠", "여동생", "형", "오빠", "남동생", "누나", "언니", "형부", "외숙모", "할머니", "할부지", "사촌동생", "삼촌", "이모", "고조할머니", "증조할아버지"};
@@ -70,6 +74,21 @@ void cat() {
     srand(time(0));  
 
     string word1 = categories[x - 1][rand() % categories[x - 1].size()];  
-    string word2 = categories[y - 1다
+    string word2 = categories[y - 1][rand() % categories[y - 1].size()];  
+
+    bool swapWords = rand() % 2;  
+
+    string nickname = swapWords ? (word2 + word1) : (word1 + word2);
+
+    cout << "추천 닉네임: " << nickname << endl;
+}
+
+올라와있는 파일은 이 알고리즘을 바탕으로 닉네임을 추천해주는 웹사이트를 만드려 시도했다
+세 파일을 비주얼 스튜디오에서 컴파일하고
+http://localhost:8080/nickname?keyword=게임
+이라고 하면 게임 기반 닉네임을 추천해준다
+이러면 한글이 깨져서 보이는데, 아마 웹주소에서는 한글을 쓰면 안되기에 그런것같다 
+아마 영어 기반으로 만들면 안깨지지 않을듯하다
+
 최종목표는 이렇게 닉네임을 추천해주는 웹사이트를 만드는 거다 
 다음번엔 자바로 시도해보겠다!!
