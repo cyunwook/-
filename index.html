@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>닉네임 추천</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .btn {
+            margin: 10px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+            .btn:hover {
+                background-color: #45a049;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>닉네임 추천</h2>
+        <button class="btn" onclick="showKeyword()">키워드 기반 추천</button>
+        <button class="btn" onclick="showCategory()">카테고리 기반 추천</button>
+
+        <div id="keywordInput" style="display:none;">
+            <input type="text" id="keyword" placeholder="키워드를 입력하세요">
+            <button class="btn" onclick="getNicknameByKeyword()">추천 받기</button>
+        </div>
+
+        <div id="categoryInput" style="display:none;">
+            <select id="category1">
+                <option value="1">동물</option>
+                <option value="2">음식</option>
+                <option value="3">가족</option>
+                <option value="4">아이스크림</option>
+            </select>
+            <select id="category2">
+                <option value="1">동물</option>
+                <option value="2">음식</option>
+                <option value="3">가족</option>
+                <option value="4">아이스크림</option>
+            </select>
+            <button class="btn" onclick="getNicknameByCategory()">추천 받기</button>
+        </div>
+
+        <div id="nicknameResult" style="margin-top:20px;"></div>
+    </div>
+
+    <script>
+        function showKeyword() {
+            document.getElementById('keywordInput').style.display = 'block';
+            document.getElementById('categoryInput').style.display = 'none';
+        }
+
+        function showCategory() {
+            document.getElementById('categoryInput').style.display = 'block';
+            document.getElementById('keywordInput').style.display = 'none';
+        }
+
+        function getNicknameByKeyword() {
+            const keyword = document.getElementById('keyword').value;
+            fetch(`/nickname_key?keyword=${keyword}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('nicknameResult').innerText = data;
+                });
+        }
+
+        function getNicknameByCategory() {
+            const x = document.getElementById('category1').value;
+            const y = document.getElementById('category2').value;
+            fetch(`/nickname_cat?x=${x}&y=${y}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('nicknameResult').innerText = data;
+                });
+        }
+    </script>
+</body>
+</html>
