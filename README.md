@@ -70,17 +70,6 @@ void cat() {
     srand(time(0));  
 
     string word1 = categories[x - 1][rand() % categories[x - 1].size()];  
-    string word2 = categories[y - 1][rand() % categories[y - 1].size()];  
-
-    bool swapWords = rand() % 2;  
-
-    string nickname = swapWords ? (word2 + word1) : (word1 + word2);
-
-    cout << "추천 닉네임: " << nickname << endl;
-}
-
-예시 (입력) 1 연욱 => (출력) 벌레연욱
-     (입력) 2 2 3 => (출력) 엽떡할머니
-     이런식으로 닉네임을 짜주는 알고리즘이다
+    string word2 = categories[y - 1다
 최종목표는 이렇게 닉네임을 추천해주는 웹사이트를 만드는 거다 
 다음번엔 자바로 시도해보겠다!!
